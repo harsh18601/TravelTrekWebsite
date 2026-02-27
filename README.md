@@ -1,55 +1,43 @@
-## ✈️ TravelTrek Fullstack Webapp 🧳
-One stop Travel webapp to plan your travel beforehand.
+# ✈️ TravelTrek - Modern Fullstack Travel Discovery 🧳
 
-### 😁 Prerequisites
+A premium, modern travel discovery platform built with **React, Vite, Node.js, and MongoDB**.
 
-To run this system you will need :
+## 🚀 Features
+- **Modern UI**: Sleek, interactive interface with glassmorphism and smooth animations (Framer Motion).
+- **Decoupled Architecture**: Fast React frontend serving as a client for a modular Express REST API.
+- **Dynamic Content**: Explore Adventures, Food, Wellness, and Events fetched via API.
+- **Validated Contact System**: Professional contact form with real-time feedback and server-side validation.
+- **Premium Branding**: Custom-designed logo and high-end design system.
 
-- 📗 Node.js
-- 📕 Express.js
-- 📘 Mongoose
-- 📒 MongoDB
- 
-### Main Home page 🥳
- 
-![ScreenShot](https://raw.githubusercontent.com/Aarushi5g/TravelTrek-FullstackWebapp/master/Screenshot_1.png)
+## 🛠️ Tech Stack
+- **Frontend**: React 18, Vite, Tailwind CSS, Framer Motion, Axios, Lucide Icons.
+- **Backend**: Node.js, Express, MongoDB, Mongoose, Express Validator, CORS.
 
-![ScreenShot](https://raw.githubusercontent.com/Aarushi5g/TravelTrek-FullstackWebapp/master/Screenshot_2.png)
+## 🏁 Getting Started
 
-![ScreenShot](https://raw.githubusercontent.com/Aarushi5g/TravelTrek-FullstackWebapp/master/Screenshot_3.png)
+### Prerequisites
+- Node.js (v16+)
+- MongoDB (Running locally or via Atlas)
 
-### Travel discovery Map 😎
-
-![ScreenShot](https://raw.githubusercontent.com/Aarushi5g/TravelTrek-FullstackWebapp/master/Screenshot_5.png)
-
-### Footer of webapp 🤩
-
-![ScreenShot](https://raw.githubusercontent.com/Aarushi5g/TravelTrek-FullstackWebapp/master/Screenshot_4.png)
-
-### Contact Page ✍️
-
-![ScreenShot](https://raw.githubusercontent.com/Aarushi5g/TravelTrek-FullstackWebapp/master/Screenshot_6.png)
-
-## Team Project 🤝
-
-# 💻 Built using
-- Handlebars
-- CSS
-- Node.js
-- Express.js
-- Mongoose
-- MongoDB
-
-## 😲 Getting Started
-
-#### Clone this repository and set your path to it's src folder, run the command 'npm app.js' to get it up and running on your local system.✨
-
+### 1. Setup Backend
+```bash
+cd backend
+npm install
+npm run dev
 ```
-git clone https://github.com/Aarushi5g/TravelTrek-FullstackWebapp.git
-cd backend/src
+The API will run on `http://localhost:3000/api`.
+
+### 2. Setup Frontend
+```bash
+cd frontend
+npm install
+npm run dev
 ```
+The website will be available at `http://localhost:5173`.
 
-# 📃License
+## 📂 Project Structure
+- `/backend`: Express API, Models, and Modular Routes.
+- `/frontend`: React client with Tailwind and Framer Motion.
 
-This project is licensed under the MIT License - see the License file for the details.
-# TravelTrekWebsite
+## 📃 License
+This project is licensed under the MIT License.
