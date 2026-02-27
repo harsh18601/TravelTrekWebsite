@@ -4,10 +4,11 @@ A premium, modern travel discovery platform built with **React, Vite, Node.js, a
 
 ## 🚀 Features
 - **Modern UI**: Sleek, interactive interface with glassmorphism and smooth animations (Framer Motion).
+- **Refined Navigation**: Intuitive category-based browsing (Adventures, Food, Wellness, Events).
+- **Interactive Map Discovery**: "Discover on-click" section with floating explorer pins and pulse animations.
+- **Image Restoration**: High-quality, curated travel assets for destinations and culinary experiences.
 - **Decoupled Architecture**: Fast React frontend serving as a client for a modular Express REST API.
-- **Dynamic Content**: Explore Adventures, Food, Wellness, and Events fetched via API.
 - **Validated Contact System**: Professional contact form with real-time feedback and server-side validation.
-- **Premium Branding**: Custom-designed logo and high-end design system.
 
 ## 🛠️ Tech Stack
 - **Frontend**: React 18, Vite, Tailwind CSS, Framer Motion, Axios, Lucide Icons.
@@ -23,6 +24,7 @@ A premium, modern travel discovery platform built with **React, Vite, Node.js, a
 ```bash
 cd backend
 npm install
+node src/db/seed.js # To seed initial data
 npm run dev
 ```
 The API will run on `http://localhost:3000/api`.
