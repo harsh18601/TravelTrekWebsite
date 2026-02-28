@@ -1,13 +1,15 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Navbar from '../components/Navbar';
 import Hero from '../components/Hero';
 import TopBanner from '../components/TopBanner';
 import Footer from '../components/Footer';
-import { motion } from 'framer-motion';
-import { Star, Zap, Heart, Calendar, ArrowRight, Map } from 'lucide-react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { Star, Zap, Heart, Calendar, ArrowRight, Map, Quote, X } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
 const Home = () => {
+    const [selectedExplorer, setSelectedExplorer] = useState(null);
+
     const stories = [
         { name: 'Taj Mahal, India', desc: '"Have been in front of so many monuments till date, but the feel of witnessing Taj is unmatchable."', color: 'from-orange-400 to-orange-500', img: '/assets/images/taj_mahal.png' },
         { name: 'Leaning Tower of Pisa, Italy', desc: '"Bucket list: to hold up the Leaning Tower of Pisa."', color: 'from-orange-300 to-orange-400', img: '/assets/images/pisa.png' },
@@ -26,6 +28,18 @@ const Home = () => {
         { name: 'Food & Drinks', icon: Map, color: 'text-brand-amber', path: '/food', desc: '"Good Food is Good Mood"' },
         { name: 'Wellness & Spa', icon: Heart, color: 'text-brand-emerald', path: '/wellness', desc: '"Spa days are a necessity not a luxury"' },
         { name: 'Adventurous', icon: Zap, color: 'text-brand-amber', path: '/adventures', desc: '"Life is a daring adventure or nothing"' }
+    ];
+
+    const explorers = [
+        { id: 1, name: "Elena Rodriguez", location: "Patagonia, Chile", bio: "Elena spent 3 months trekking across the Southern Patagonian Ice Field. 'The silence of the glaciers is something you feel in your soul.'", img: "https://i.pravatar.cc/150?u=traveltrek0", top: '25%', left: '20%' },
+        { id: 2, name: "Marcus Chen", location: "Kyoto, Japan", bio: "A visual storyteller capturing the fleeting beauty of cherry blossom season. 'Perspective changes everything when you slow down.'", img: "https://i.pravatar.cc/150?u=traveltrek1", top: '45%', left: '52%' },
+        { id: 3, name: "Amina Okoro", location: "Serengeti, Tanzania", bio: "Amina's wildlife photography documented the Great Migration. 'Nature doesn't wait for anyone, you have to be present.'", img: "https://i.pravatar.cc/150?u=traveltrek2", top: '65%', left: '82%' }
+    ];
+
+    const testimonials = [
+        { name: "Sarah Jenkins", role: "Adventure Photographer", content: "TravelTrek curated an expedition that surpassed all my expectations. Their attention to detail and unique access is unparalleled.", rating: 5 },
+        { name: "David Thorne", role: "CEO, TechInnovate", content: "The Elite membership is a game-changer. The concierge service handled everything, allowing me to truly disconnect and explore.", rating: 5 },
+        { name: "Maya Patel", role: "Culture Enthusiast", content: "From the food tours in Osaka to the spa retreats in Bali, every recommendation was spot on. Highly recommended!", rating: 4 }
     ];
 
     return (
@@ -115,7 +129,7 @@ const Home = () => {
             </section>
 
             {/* Discover On Click (Refined Map Discovery) */}
-            <section className="py-32 bg-white">
+            <section className="py-32 bg-white relative">
                 <div className="max-w-7xl mx-auto px-6 text-center">
                     <motion.h2
                         initial={{ opacity: 0, y: 20 }}
@@ -144,47 +158,122 @@ const Home = () => {
                     </motion.p>
 
                     <div className="relative aspect-[21/9] bg-[#f0f7ff] rounded-[4rem] overflow-hidden border border-blue-50 shadow-inner flex items-center justify-center">
-                        <div className="text-blue-100 opacity-30">
-                            <Map size={500} strokeWidth={0.5} />
+                        {/* Real World Map Background */}
+                        <div className="absolute inset-0 opacity-40 grayscale hover:grayscale-0 transition-all duration-1000">
+                            <img
+                                src="https://images.unsplash.com/photo-1526772662000-3f88f10405ff?auto=format&fit=crop&w=1920&q=80"
+                                alt="World Map"
+                                className="w-full h-full object-cover"
+                            />
                         </div>
 
                         {/* Interactive Profile Pins */}
-                        {[
-                            { top: '25%', left: '20%', delay: 0 },
-                            { top: '45%', left: '52%', delay: 0.4 },
-                            { top: '65%', left: '82%', delay: 0.8 }
-                        ].map((pin, i) => (
+                        {explorers.map((explorer, i) => (
                             <motion.div
                                 key={i}
                                 initial={{ scale: 0, opacity: 0 }}
                                 whileInView={{ scale: 1, opacity: 1 }}
                                 viewport={{ once: true }}
                                 transition={{
-                                    type: "spring",
-                                    stiffness: 260,
-                                    damping: 20,
-                                    delay: pin.delay + 0.5
+                                    type: "spring", stiffness: 260, damping: 20, delay: i * 0.2 + 0.5
                                 }}
-                                whileHover={{ scale: 1.1, y: -5 }}
+                                whileHover={{ scale: 1.2, zIndex: 40 }}
+                                onClick={() => setSelectedExplorer(explorer)}
                                 className="absolute cursor-pointer"
-                                style={{ top: pin.top, left: pin.left }}
+                                style={{ top: explorer.top, left: explorer.left }}
                             >
-                                <div className="relative">
-                                    <div className="w-16 h-16 bg-white rounded-full shadow-[0_10px_25px_-5px_rgba(0,0,0,0.1)] p-1.5 border border-white transition-shadow hover:shadow-2xl">
-                                        <div className="w-full h-full rounded-full overflow-hidden border-2 border-brand-amber border-opacity-10">
-                                            <img
-                                                src={`https://i.pravatar.cc/150?u=traveltrek${i}`}
-                                                alt="Explorer"
-                                                className="w-full h-full object-cover"
-                                            />
+                                <div className="relative group">
+                                    <div className="w-16 h-16 bg-white rounded-full shadow-2xl p-1.5 border-2 border-brand-amber transition-all group-hover:scale-110">
+                                        <div className="w-full h-full rounded-full overflow-hidden">
+                                            <img src={explorer.img} alt={explorer.name} className="w-full h-full object-cover" />
                                         </div>
                                     </div>
-                                    {/* Pulse Effect */}
                                     <motion.div
-                                        animate={{ scale: [1, 1.5, 1], opacity: [0.3, 0, 0.3] }}
-                                        transition={{ repeat: Infinity, duration: 3, delay: pin.delay }}
+                                        animate={{ scale: [1, 1.4, 1], opacity: [0.3, 0, 0.3] }}
+                                        transition={{ repeat: Infinity, duration: 2, delay: i * 0.5 }}
                                         className="absolute inset-0 bg-brand-amber rounded-full -z-10"
                                     />
+                                </div>
+                            </motion.div>
+                        ))}
+
+                        {/* Advanced Info Overlay */}
+                        <AnimatePresence>
+                            {selectedExplorer && (
+                                <motion.div
+                                    initial={{ opacity: 0, backdropFilter: "blur(0px)" }}
+                                    animate={{ opacity: 1, backdropFilter: "blur(8px)" }}
+                                    exit={{ opacity: 0, backdropFilter: "blur(0px)" }}
+                                    className="absolute inset-0 z-50 bg-black bg-opacity-40 flex items-center justify-center p-6"
+                                    onClick={() => setSelectedExplorer(null)}
+                                >
+                                    <motion.div
+                                        initial={{ scale: 0.9, y: 20 }}
+                                        animate={{ scale: 1, y: 0 }}
+                                        exit={{ scale: 0.9, y: 20 }}
+                                        className="bg-white max-w-lg w-full rounded-sm overflow-hidden shadow-2xl relative"
+                                        onClick={e => e.stopPropagation()}
+                                    >
+                                        <button
+                                            onClick={() => setSelectedExplorer(null)}
+                                            className="absolute top-4 right-4 text-gray-400 hover:text-brand-navy transition-colors"
+                                        >
+                                            <X size={24} />
+                                        </button>
+
+                                        <div className="h-48 overflow-hidden">
+                                            <img src={selectedExplorer.img} alt={selectedExplorer.name} className="w-full h-full object-cover" />
+                                        </div>
+
+                                        <div className="p-8 text-left">
+                                            <h3 className="text-brand-amber font-bold text-xs uppercase tracking-widest mb-2">{selectedExplorer.location}</h3>
+                                            <h2 className="text-3xl font-bold text-brand-navy mb-4" style={{ fontFamily: 'serif' }}>{selectedExplorer.name}</h2>
+                                            <p className="text-gray-500 italic leading-relaxed mb-6">"{selectedExplorer.bio}"</p>
+                                            <button className="w-full bg-brand-navy text-white py-4 font-bold text-xs uppercase tracking-widest hover:bg-brand-amber hover:text-brand-navy transition-all">
+                                                Read Full Story
+                                            </button>
+                                        </div>
+                                    </motion.div>
+                                </motion.div>
+                            )}
+                        </AnimatePresence>
+                    </div>
+                </div>
+            </section>
+
+            {/* Testimonials Section */}
+            <section className="py-24 bg-gray-50">
+                <div className="max-w-7xl mx-auto px-6">
+                    <div className="text-center mb-16">
+                        <h2 className="text-5xl font-light italic text-brand-amber mb-6" style={{ fontFamily: 'Playfair Display, serif' }}>Voices of Discovery</h2>
+                        <div className="w-24 h-0.5 bg-brand-amber mx-auto bg-opacity-30" />
+                    </div>
+
+                    <div className="grid md:grid-cols-3 gap-8">
+                        {testimonials.map((t, i) => (
+                            <motion.div
+                                key={i}
+                                initial={{ opacity: 0, y: 20 }}
+                                whileInView={{ opacity: 1, y: 0 }}
+                                viewport={{ once: true }}
+                                transition={{ delay: i * 0.1 }}
+                                className="bg-white p-10 rounded-sm shadow-xl border border-gray-100 relative group hover:border-brand-amber transition-all duration-500"
+                            >
+                                <Quote className="text-brand-amber opacity-10 absolute top-6 right-6 group-hover:opacity-30 transition-opacity" size={60} />
+                                <div className="flex gap-1 mb-6">
+                                    {[...Array(5)].map((_, star) => (
+                                        <Star
+                                            key={star}
+                                            size={14}
+                                            fill={star < t.rating ? "currentColor" : "none"}
+                                            className={star < t.rating ? "text-brand-amber" : "text-gray-200"}
+                                        />
+                                    ))}
+                                </div>
+                                <p className="text-gray-600 italic leading-relaxed mb-8 relative z-10">"{t.content}"</p>
+                                <div>
+                                    <h4 className="font-bold text-brand-navy uppercase tracking-widest text-sm">{t.name}</h4>
+                                    <p className="text-xs text-gray-400 font-medium">{t.role}</p>
                                 </div>
                             </motion.div>
                         ))}
@@ -198,3 +287,4 @@ const Home = () => {
 };
 
 export default Home;
+

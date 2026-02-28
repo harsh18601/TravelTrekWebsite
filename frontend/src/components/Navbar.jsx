@@ -44,9 +44,11 @@ const Navbar = () => {
                             {link.name}
                         </Link>
                     ))}
-                    <button className={`px-6 py-2 rounded-sm font-bold text-xs uppercase tracking-widest transition-all ${scrolled ? 'bg-brand-navy text-white' : 'bg-white text-brand-navy'} hover:bg-brand-amber hover:text-brand-navy`}>
-                        Book Now
-                    </button>
+                    <Link to="/book">
+                        <button className={`px-6 py-2 rounded-sm font-bold text-xs uppercase tracking-widest transition-all ${scrolled ? 'bg-brand-navy text-white' : 'bg-white text-brand-navy'} hover:bg-brand-amber hover:text-brand-navy`}>
+                            Book Now
+                        </button>
+                    </Link>
                 </div>
 
             </div>

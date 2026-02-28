@@ -3,12 +3,14 @@
 A premium, modern travel discovery platform built with **React, Vite, Node.js, and MongoDB**.
 
 ## 🚀 Features
-- **Modern UI**: Sleek, interactive interface with glassmorphism and smooth animations (Framer Motion).
+- **Dynamic Hero Slider**: Auto-cycling multi-image showcase with manual navigation arrows and indicator dots.
+- **Elite Membership (TravelTrek Elite)**: Bespoke application system for exclusive member-only benefits.
+- **Bespoke Booking Inquiry**: Premium interface for requesting custom-tailored travel itineraries.
+- **Enhanced Map Interactivity**: Stylized world map with clickable explorer pins and animated detail overlays.
+- **Voices of Discovery**: Integrated testimonials section featuring explorer stories and ratings.
+- **Seamless UX**: Integrated Scroll-to-Top functionality and smooth Framer Motion transitions across all routes.
 - **Refined Navigation**: Intuitive category-based browsing (Adventures, Food, Wellness, Events).
-- **Interactive Map Discovery**: "Discover on-click" section with floating explorer pins and pulse animations.
-- **Image Restoration**: High-quality, curated travel assets for destinations and culinary experiences.
-- **Decoupled Architecture**: Fast React frontend serving as a client for a modular Express REST API.
-- **Validated Contact System**: Professional contact form with real-time feedback and server-side validation.
+
 
 ## 🛠️ Tech Stack
 - **Frontend**: React 18, Vite, Tailwind CSS, Framer Motion, Axios, Lucide Icons.
